@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/',(req,res)=> res.status(200).send('GET /reservations secceeded'));
-router.post('/',(req,res)=> res.status(201).send('POST /reservations secceeded'));
-router.get('/:id',(req,res)=> res.status(200).send('GET /reservations/:id secceeded'));
-router.put('/:id',(req,res)=> res.status(200).send('PUT /reservations/:id secceeded'));
+const reservationController = require('../controllers/reservations.controller');
+
+router.get('/', reservationController.getAllReservations);
+router.post('/', reservationController.createReservation);
+router.get('/:id',reservationController.updateReservation);
+router.put('/:id', reservationController.deleteReservation);
 router.delete('/:id',(req,res)=> res.status(204).send());
 
 module.exports = router;
